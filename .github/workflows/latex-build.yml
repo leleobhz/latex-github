@@ -1,0 +1,39 @@
+name: LaTeX Build
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - arquivoPrincipal.tex
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: LaTex Build Procedure
+    steps:
+    - name: Repo checkout
+      uses: actions/checkout@v2
+      with:
+        lfs: true
+    - name: Checkout LFS objects
+      run: git lfs checkout
+    - name: Cache Miktex Config
+      uses: actions/cache@v2
+      with:
+        key: ${{ runner.os }}-dot_miktex
+        restore-keys: ${{ runner.os }}-dot_miktex
+        path: |
+          dot_miktex
+    - name: Cache Docker Image
+      uses: satackey/action-docker-layer-caching@v0.0.11
+      continue-on-error: true
+    - name: Build PDF with make clean pdf
+      run: make on_docker
+    - name: Release
+      uses: "marvinpinto/action-automatic-releases@latest"
+      with:
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        automatic_release_tag: "latest"
+        prerelease: False
+        title: "Build do PDF"
+        files: arquivoPrincipal.pdf
