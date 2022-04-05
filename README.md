@@ -10,7 +10,7 @@ Agora, somente o Docker. :)
 
 ## Como usar
 
-O arquivo que será compilado deve se chamar `arquivoPrincipal.tex`. Não importa quais são as dependencias internas do arquivo, se haverá include ou não dentro do LaTeX, basta que o arquivo tenha o nome correto. A action executará em caso de mudança no arquivo `arquivoPrincipal.tex`, então é sugerido que seja utilizado um comentário serial, como por exemplo:
+O arquivo que será compilado deve se chamar `arquivoPrincipal.tex` e deve estar na pasta `documento`. Não importa quais são as dependencias internas do arquivo, se haverá include ou não dentro do LaTeX, basta que o arquivo tenha o nome correto. A action executará em caso de mudança no arquivo `arquivoPrincipal.tex`, então é sugerido que seja utilizado um comentário serial, como por exemplo:
 
 ```latex
 % 202204051537

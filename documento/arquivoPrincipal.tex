@@ -1,0 +1,164 @@
+% Documento de demonstração do repositório leleobhz/latex-github. Baseado fortemente em https://www.ime.usp.br/~viviane/MAP2212/exemplo.tex
+
+%Tudo que começa com '%' é comentário e é ignorado pelo compilador
+
+%Gerando arquivo em latex:
+%latex arquivo.tex (em dvi)
+%pdflatex arquivo (em pdf)
+%dvipdfm arquivo
+%s2pdf arquivo
+
+% Alguns modos de usar o latex:
+% Windows – Miktex com Led
+% Linux – texlive com kile
+
+\documentclass[12pt,a4paper]{report} %aqui fala o tipo de documento e o tamanho da fonte. Opções: tamanho do texto (10pt, 12pt, 14pt), formato do papel (a4paper, a5paper, b5paper, letterpaper, legalpaper, executivepaper), o número de colunas (onecolumn, twocolumn), entre outras opções.
+%Por exemplo, [12pt,a4,twocolumn].
+%classe: article, report, letter, book ou slides. Instalar abnt para quem está pensando no tf
+\usepackage[brazil]{babel} %hifenização em português do brasil
+% Nota do autor do repo leleobhz/latex-github: UTF-8 é melhor, convenhamos. A linha abaixo é comentada devido ao uso do lualatex, que só aceita UTF-8
+%\usepackage[cp1252]{inputenc} %Encoding do windows, com caracteres acentuados 
+\usepackage{fontspec}
+\usepackage{mathptmx}
+\usepackage{amsmath}
+\usepackage{amssymb} %alguns caracteres matemáticos especiais
+\usepackage{graphicx} %Para inserir figuras
+
+% Aqui começa o documento
+\begin{document}
+\title{Exemplo de \LaTeX} % título
+\author{Viviane Teles de Lucca Maranhão \\ viviane@ime.usp.br} % quem escreveu
+\date{março de 2012} %data
+
+\maketitle %cria o título
+
+\def \negritovi {\textbf} %Criando comandos
+
+\tableofcontents %índice
+\pagebreak % Quebra de página
+\listoffigures %indice de figuras
+\listoftables %indice de tabelas
+\pagebreak % Quebra de página
+
+\section{Introdução} %Cria uma seção
+\mbox{} %As vezes, para o primeiro parágrafo da seção sair com espaçamento correto precisa dessa gambiarrinha
+
+
+Este é um tutorial bem simples de \LaTeX. Existe muito material disponível na internet, inclusive na página do professor em \cite{stern}.
+% para pular um paragrafo basta pular uma linha
+
+Este é o segundo parágrafo.
+\\ Passando para a linha de baixo. %Aqui inicia uma nova linha, mas sem o espaçamento.
+
+Os comandos em \LaTeX começam com $\backslash$ %Esta é a \. 
+\\Outros exemplos de caracteres especiais são \# \$ \%  \& \_ \{ \} que podem ser escritos com um ' $\backslash$ ' na frente.
+
+\textbf{Um texto em negrito} %Negrito
+\\ \negritovi{Outro negrito} % aquele comando novo criado no começo
+\\ \textit{Um texto em itálico} %Itálico
+
+
+
+
+\section{Itens}
+\mbox{}
+
+
+Escrevendo em itens:
+
+\begin{itemize} %Começa uma lista
+\item Primeiro item %cada item é acrescentado com '\item'
+\item Segundo item
+\item ...
+\end{itemize} % termina a lista
+
+\section{Equações e caracteres matemáticos}
+
+\mbox{}
+
+Alguns símbolos matemáticos:
+
+$\pi $ % pi
+$\Pi $ % Pi maiúsculo
+$\frac{numerador}{denominador} $ % Fração
+
+\^ % Sobrescrito
+\_ %Subscrito
+
+$\backslash $ % \
+$\sqrt{num}$  %Raiz quadrada do numero
+$\int $ %Integral
+$\sum_{i = 1}^{n} $ % Somatoria de i = 1 a n
+$\leq $ %Menor ou igual
+$\geq $ % Maior ou igual
+$\neq $ % Diferente
+$\sim $ % Semelhante ~
+$\approx $ % Aproximadamente 
+$\sin $ %seno  
+
+Uma fórmula pode ser iniciada e terminada com \$. Isso faz com que ela seja escrita na mesma linha que o texto. Por exemplo: $\pi \approx 3.1415 $.
+
+Podemos também destacar uma fórmula iniciando e terminado com \$\$. Por exemplo:
+
+$$ \frac{1}{2} = 0.5 $$ %frações são usadas assim, primeiro par de chaves é o numerador e o segundo o denominador.
+
+Por fim, podemos criar um ambiente de equação, dado um número a ela para que ela possa ser referenciada posteriormente:
+
+\begin{equation}\label{equacao}
+A^{i}_{j} = B^{j}_{i} % brincando com índices
+\end{equation} % Formula numerada
+
+
+\section{Tabela}
+
+\mbox{}
+
+Uma tabela:
+
+
+\begin{table}[ht] % começa a tabela
+\begin{center} %centraliza
+\begin{tiny} %quero o tamanho da fonte bem pequeno nessa tabela
+\begin{tabular}{rrl} %especifica a quantidade de linhas e alinhamento
+  \hline %linha horizontal
+Direita & Direita  &Esquerda \\
+%separa coluna com '&' e quebra linha com '\\'
+  \hline
+1 & 2 & 3 \\
+4 & 5 & 6 \\
+   \hline
+\end{tabular}
+\end{tiny} %volta pro tamanho original
+\caption{Uma tabela simples} %Legenda
+\label{tabelinha} %nome
+\end{center} %fecha o centralizado
+\end{table} %termina a tabela
+
+\section{Figuras}
+\mbox{}
+
+Aqui vai uma figura:
+
+\begin{figure}[h!t] %Aqui, senão no top
+\centering % centralizada
+\includegraphics[scale = 2]{figura.jpg} %inclui figura.png com escala 2
+\caption{Uma figura qualquer} %legenda
+\label{figurinha} % nome da figura
+\end{figure}
+
+\cleardoublepage %faz flush do buffer, pode ser util para tentar colocar figuras e tabelas onde realmente desejamos
+
+\begin{thebibliography}{99} % Até 99 referencias
+\bibitem{wiki} % este é o nome que é usado para citar a referencia
+http://en.wikipedia.org/ % referência
+\bibitem{stern}
+http://www.ime.usp.br/$\sim$ jstern
+
+\end{thebibliography}
+
+\end{document}
+
+%fim do documento. O que vem depois daqui não é gerado
+
+\section{Escondida}
+Essa seção não vai aparecer.

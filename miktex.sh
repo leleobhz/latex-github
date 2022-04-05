@@ -25,12 +25,13 @@ if [[ $(docker --version | awk '{print $1}') == "Docker" ]]; then
 	  -e MIKTEX_GID=$(id -g) \
 	  -e MIKTEX_UID=$(id -u) \
 	  miktex/miktex \
-	  ${@}
+	  "${@}"
+fi
 
-else
+if [[ $(docker --version | awk '{print $1}') == "podman" ]]; then
 	podman run --rm \
 	  -v $(pwd)/dot_miktex:/miktex/.miktex \
 	  -v $(pwd):/miktex/work \
 	  miktex/miktex \
-	  ${@}
+	  "${@}"
 fi

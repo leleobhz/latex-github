@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - arquivoPrincipal.tex
+      - documento/arquivoPrincipal.tex
 
 jobs:
   build:
@@ -36,4 +36,4 @@ jobs:
         automatic_release_tag: "latest"
         prerelease: False
         title: "Build do PDF"
-        files: arquivoPrincipal.pdf
+        files: documento/arquivoPrincipal.pdf
