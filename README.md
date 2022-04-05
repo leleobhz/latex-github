@@ -24,7 +24,7 @@ O arquivo que será compilado deve se chamar `arquivoPrincipal.tex` e deve estar
 
 ## Creditos
 
-Ademais todos os softwares livres utilizados aqui - como o <span class="latex">L<sup>a</sup>T<sub>e</sub>X</span> [1]</cite>, este repositório só exise por conta das seguintes entidades:
+Ademais todos os softwares livres utilizados aqui - como o <span class="latex">L<sup>a</sup>T<sub>e</sub>X</span> [1]</cite>, este repositório só existe por conta das seguintes entidades:
 
 [Talita Cristina](https://github.com/talitacristina-c) e seu mestrado;
 
