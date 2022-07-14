@@ -46,7 +46,7 @@
 #copy of the GPL
 
 #Possible targets are:
-#all, on_docker, html, words, clean, cleaner, htmlclean, pdf
+#all, html, words, clean, cleaner, htmlclean, pdf
 
 RM = rm -rf
 
@@ -66,13 +66,17 @@ FILES = ${BASE:%.tex=%.pdf}
 
 LOPT = -shell-escape
 
-on_docker:
+.DEFAULT_GOAL := on_docker
+
+on_docker: out_docker_build
 	./miktex.sh bash -xc 'cd documento && make -f ../Makefile all'
+
+out_docker_build:
+	./build-miktex-docker.sh
 
 all:   clean pdf
 
-%.pdf:	${BASE:%.tex=%}
-# *.tex
+%.pdf: ${BASE:%.tex=%}
 	lualatex ${LOPT} $*
 	- biber $*
 	lualatex ${LOPT} $*

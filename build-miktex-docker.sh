@@ -19,17 +19,8 @@
 #  sh -c "mpm --update ; mpm --update"
 
 if [[ $(docker --version | awk '{print $1}') == "Docker" ]]; then
-	docker run --rm \
-	  -v $(pwd)/dot_miktex:/miktex/.miktex \
-	  -v $(pwd):/miktex/work \
-	  -e MIKTEX_GID=$(id -g) \
-	  -e MIKTEX_UID=$(id -u) \
-	  miktex/miktex \
-	  ${@}
+	docker build --tag miktex/miktex ./docker-miktex
+
 else
-	podman run --rm \
-	  -v $(pwd)/dot_miktex:/miktex/.miktex \
-	  -v $(pwd):/miktex/work \
-	  miktex/miktex \
-	  ${@}
+	podman build --tag miktex/miktex ./docker-miktex
 fi

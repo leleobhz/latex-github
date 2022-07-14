@@ -1,0 +1,3 @@
+[submodule "docker-miktex"]
+	path = docker-miktex
+	url = https://github.com/MiKTeX/docker-miktex.git
