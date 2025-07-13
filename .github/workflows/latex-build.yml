@@ -11,6 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     name: LaTex Build Procedure
     steps:
+     - name: Suid tar as root to allow podman cache
+       run: sudo chown root /bin/tar && sudo chmod u+s /bin/tar
     - name: Replace docker by podman
       run: |
         sudo apt update
