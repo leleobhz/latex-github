@@ -9,6 +9,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    container: quay.io/podman/stable:latest
     name: LaTex Build Procedure
     steps:
     - name: Repo checkout
@@ -34,6 +35,7 @@ jobs:
     - name: Upload PDF to release
       uses: svenstaro/upload-release-action@v2
       with:
+        release_name: "Build do PDF"
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: documento/arquivoPrincipal.pdf
         asset_name: documento.pdf
