@@ -12,29 +12,30 @@ jobs:
     name: LaTex Build Procedure
     steps:
     - name: Repo checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
       with:
         submodules: recursive
         lfs: true
     - name: Checkout LFS objects
       run: git lfs checkout
     - name: Cache Miktex Config
-      uses: actions/cache@v2
+      uses: actions/cache@v4
       with:
         key: ${{ runner.os }}-dot_miktex
         restore-keys: ${{ runner.os }}-dot_miktex
         path: |
           dot_miktex
-    - name: Cache Docker Image
-      uses: satackey/action-docker-layer-caching@v0.0.11
-      continue-on-error: true
+    - name: Cache Docker images.
+      uses: ScribeMD/docker-cache@0.5.0
+      with:
+        key: docker-${{ runner.os }}-${{ hashFiles('miktex.sh') }}
     - name: Build PDF with make clean pdf
       run: make on_docker
-    - name: Release
-      uses: "marvinpinto/action-automatic-releases@latest"
+    - name: Upload PDF to release
+      uses: svenstaro/upload-release-action@v2
       with:
-        repo_token: "${{ secrets.GITHUB_TOKEN }}"
-        automatic_release_tag: "latest"
-        prerelease: False
-        title: "Build do PDF"
-        files: documento/arquivoPrincipal.pdf
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: documento/arquivoPrincipal.pdf
+        asset_name: documento.pdf
+        tag: ${{ github.ref }}
+        overwrite: true
