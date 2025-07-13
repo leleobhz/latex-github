@@ -19,7 +19,7 @@
 #  sh -c "mpm --update ; mpm --update"
 
 if [[ $(docker --version | awk '{print $1}') == "Docker" ]]; then
-	docker build --tag miktex/miktex:latest ./docker-miktex
+	docker build --tag localhost/miktex/miktex:latest ./docker-miktex
 
 else
 	podman build --tag localhost/miktex/miktex:latest ./docker-miktex
