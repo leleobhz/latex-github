@@ -23,6 +23,13 @@ jobs:
         lfs: true
     - name: Checkout LFS objects
       run: git lfs checkout
+    - name: Cache podman
+      uses: actions/cache@v4
+      with:
+        key: ${{ runner.os }}-podman
+        restore-keys: ${{ runner.os }}-podman
+        path: |
+          $(podman info -f json | jq -r .store.volumePath)
     - name: Cache Miktex Config
       uses: actions/cache@v4
       with:
@@ -30,10 +37,6 @@ jobs:
         restore-keys: ${{ runner.os }}-dot_miktex
         path: |
           dot_miktex
-    - name: Cache Docker images.
-      uses: ScribeMD/docker-cache@0.5.0
-      with:
-        key: docker-${{ runner.os }}-${{ hashFiles('miktex.sh') }}
     - name: Build PDF with make clean pdf
       run: make on_docker
     - name: Upload PDF to release
