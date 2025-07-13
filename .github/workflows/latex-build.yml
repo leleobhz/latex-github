@@ -9,9 +9,13 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: quay.io/podman/stable:latest
     name: LaTex Build Procedure
     steps:
+    - name: Replace docker by podman
+      run: |
+        apt update
+        apt -y purge docker*
+        apt -y install podman
     - name: Repo checkout
       uses: actions/checkout@v4
       with:
