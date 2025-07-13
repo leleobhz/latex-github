@@ -29,7 +29,7 @@ jobs:
         key: ${{ runner.os }}-podman
         restore-keys: ${{ runner.os }}-podman
         path: |
-          $(podman info -f json | jq -r .store.volumePath)
+          ~/.local/share/containers
     - name: Cache Miktex Config
       uses: actions/cache@v4
       with:
@@ -37,6 +37,8 @@ jobs:
         restore-keys: ${{ runner.os }}-dot_miktex
         path: |
           dot_miktex
+    - name: Force 777 permission to document dir
+      run: chmod 777 documento dot_miktex
     - name: Build PDF with make clean pdf
       run: make on_docker
     - name: Upload PDF to release
