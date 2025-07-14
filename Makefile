@@ -69,7 +69,7 @@ LOPT = -shell-escape
 .DEFAULT_GOAL := on_docker
 
 on_docker: out_docker_build
-        ./miktex.sh bash -xc 'miktex packages install babel-portuges && cd documento && make -f ../Makefile all'
+        ./miktex.sh bash -xc 'miktex packages install babel-portuges hyph-utf8 && miktex fndb refresh && initexmf --mklangs && initexmf -u && initexmf --dump=lualatex && initexmf --dump=xelatex && cd documento && make -f ../Makefile all'
 
 out_docker_build:
 	./build-miktex-docker.sh
