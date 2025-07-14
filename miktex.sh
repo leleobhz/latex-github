@@ -20,7 +20,7 @@
 
 if [[ $(docker --version | awk '{print $1}') == "Docker" ]]; then
 	docker run --rm \
-	  -v $(pwd)/dot_miktex:/miktex/.miktex \
+	  -v $(pwd)/dot_miktex:/miktex/packages \
 	  -v $(pwd):/miktex/work \
 	  -e MIKTEX_GID=$(id -g) \
 	  -e MIKTEX_UID=$(id -u) \
@@ -28,7 +28,7 @@ if [[ $(docker --version | awk '{print $1}') == "Docker" ]]; then
 	  "${@}"
 else
 	podman run --rm \
-	  -v $(pwd)/dot_miktex:/miktex/.miktex \
+	  -v $(pwd)/dot_miktex:/miktex/packages \
 	  -v $(pwd):/miktex/work \
 	  -e MIKTEX_GID=$(id -g) \
 	  -e MIKTEX_UID=$(id -u) \
